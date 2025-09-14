@@ -1,4 +1,5 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 
 const AuthContext = React.createContext();
 
@@ -26,4 +27,13 @@ function useAuth() {
   return auth;
 }
 
-export { AuthProvider, useAuth };
+function AuthRequired(props) {
+  const auth = useAuth();
+
+  if (!auth.isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+  return props.children;
+}
+
+export { AuthProvider, useAuth, AuthRequired };

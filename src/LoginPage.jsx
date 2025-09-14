@@ -1,17 +1,19 @@
 import React from "react";
 import { useAuth } from "./auth";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function LoginPage() {
   const auth = useAuth();
-  const navigate = useNavigate();
   const [username, setUsername] = React.useState("");
 
   const login = (e) => {
     e.preventDefault();
     auth.login(username);
-    navigate("/profile");
   };
+
+  if (auth.isAuthenticated) {
+    return <Navigate to="/profile" />;
+  }
 
   return (
     <>
