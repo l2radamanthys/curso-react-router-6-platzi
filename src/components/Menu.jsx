@@ -38,8 +38,12 @@ routes.push({
   text: "Profile",
 });
 routes.push({
-  to: "/other",
-  text: "Otro No indexado",
+  to: "/login",
+  text: "LogIn",
+});
+routes.push({
+  to: "/logout",
+  text: "LogOut",
 });
 
 export { Menu };
