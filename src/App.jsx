@@ -1,12 +1,22 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import { Menu } from "./components/Menu";
+import { HomePage } from "./HomePage";
+import { BlogPage } from "./BlogPage";
+import { ProfilePage } from "./ProfilePage";
 
 function App() {
   return (
     <>
-      <h1>React App</h1>
+      <HashRouter>
+        <Menu />
+
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="*" element={<p>Not Found!</p>} />
+        </Routes>
+      </HashRouter>
     </>
   );
 }
