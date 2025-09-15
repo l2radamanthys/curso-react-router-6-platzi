@@ -1,13 +1,18 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { blogData } from "../../blogData";
+import { useBlogData } from "../../useBlogData";
 import { useAuth } from "../../auth";
 
 function BlogPost() {
+  const { blogData, deletePost } = useBlogData();
   const navigate = useNavigate();
   const { slug } = useParams();
   const auth = useAuth();
   const blogPost = blogData.find((post) => post.slug === slug);
+
+  if (!blogPost) {
+    return <p>Publicación "{slug}" no encontrada.</p>;
+  }
 
   const canDelete =
     auth.hasPermission("can-delete-any-post") ||
@@ -21,8 +26,8 @@ function BlogPost() {
     navigate("/blog");
   };
 
-  const deletePost = () => {
-    // delete here
+  const deleteBlogPost = () => {
+    deletePost(blogPost.slug);
     returnToBlog();
   };
 
@@ -37,7 +42,7 @@ function BlogPost() {
       <p>Author: {blogPost.author}</p>
       <p>{blogPost.content}</p>
 
-      {canDelete && <button onClick={deletePost}>Eliminar Post</button>}
+      {canDelete && <button onClick={deleteBlogPost}>Eliminar Post</button>}
       {canEdit && <button onClick={editPost}>Modificar Post</button>}
     </>
   );

@@ -19,7 +19,14 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/blog" element={<BlogPage />}>
-              <Route path="add" element={<BlogPostAdd />} />
+              <Route
+                path="add"
+                element={
+                  <AuthRequired>
+                    <BlogPostAdd />
+                  </AuthRequired>
+                }
+              />
               <Route path="edit/:slug" element={<BlogPostAdd />} />
               <Route path=":slug" element={<BlogPost />} />
             </Route>

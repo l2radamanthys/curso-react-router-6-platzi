@@ -1,3 +1,31 @@
+import React from "react";
+import { useLocalStorage } from "./useLocalStorage";
+
+function useBlogData() {
+  const { item: blogData, saveItem: setBlogData } = useLocalStorage(
+    "BLOG_DATA_V1",
+    blogInitialData
+  );
+
+  // const [blogData, setBlogData] = React.useState(blogInitialData);
+
+  const addPost = (postData) => {
+    setBlogData([...blogData, postData]);
+  };
+
+  const deletePost = (slug) => {
+    setBlogData(blogData.filter((post) => post.slug !== slug));
+  };
+  // const updatePost = (postData) => {};
+
+  return {
+    blogData,
+    addPost,
+    deletePost,
+    // updatePost,
+  };
+}
+
 const blogInitialData = [
   {
     title: "Introducción a JavaScript",
@@ -36,8 +64,4 @@ const blogInitialData = [
   },
 ];
 
-function useBlogData() {}
-
-const blogData = blogInitialData;
-
-export { blogData };
+export { useBlogData };

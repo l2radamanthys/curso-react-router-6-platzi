@@ -1,12 +1,23 @@
 import React from "react";
 import "./BlogPostAdd.css";
+import { useAuth } from "../../auth";
+import { useBlogData } from "../../useBlogData";
+import { useNavigate } from "react-router-dom";
 
 function BlogPostAdd() {
   const [formData, setFormData] = React.useState({
     title: "",
     slug: "",
     content: "",
+    author: "",
   });
+  const auth = useAuth();
+  const { blogData, addPost } = useBlogData();
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    setFormData({ ...formData, author: auth.user?.username });
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -15,15 +26,18 @@ function BlogPostAdd() {
         .toLowerCase()
         .replace(/\s+/g, "-")
         .replace(/[^\w-]+/g, "");
-      setFormData((prev) => ({ ...prev, title: value, slug: generatedSlug }));
+      setFormData({ ...formData, title: value, slug: generatedSlug });
     } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
+      setFormData({ ...formData, [name]: value });
     }
   };
 
   const savePost = (event) => {
     event.preventDefault();
-    console.log(":::", formData);
+    addPost(formData);
+    console.log(formData);
+    console.log(blogData);
+    navigate(`/blog/${formData.slug}`);
   };
 
   return (
@@ -39,7 +53,13 @@ function BlogPostAdd() {
       </div>
       <div>
         <label htmlFor="">Slug</label>
-        <input type="text" name="slug" value={formData.slug} disabled="true" />
+        <input
+          type="text"
+          name="slug"
+          value={formData.slug}
+          onChange={handleChange}
+          disabled="true"
+        />
       </div>
       <div>
         <label htmlFor="">Contenido</label>
