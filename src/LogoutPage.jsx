@@ -15,7 +15,9 @@ function LogoutPage() {
     <>
       <h1>LogIn</h1>
       <form onSubmit={logout}>
-        <label htmlFor="">Seguro de que quieres salir</label>
+        <label htmlFor="">
+          <b>{auth.user?.username}</b> Seguro de que quieres salir
+        </label>
         <button type="submit">Salir</button>
       </form>
     </>
