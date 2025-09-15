@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { blogData } from "./blogData";
-import { useAuth } from "./auth";
+import { blogData } from "../../blogData";
+import { useAuth } from "../../auth";
+import "./BlogPage.css";
 
 function BlogPage() {
   const auth = useAuth();
@@ -17,7 +18,7 @@ function BlogPage() {
 
       <Outlet />
 
-      <ul>
+      <ul className="BlogPage-post-list">
         {blogData.map((post) => (
           <BlogLink key={post.slug} post={post} />
         ))}

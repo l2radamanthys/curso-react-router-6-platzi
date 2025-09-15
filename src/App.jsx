@@ -1,13 +1,13 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { Menu } from "./components/Menu";
-import { HomePage } from "./HomePage";
-import { BlogPage } from "./BlogPage";
-import { ProfilePage } from "./ProfilePage";
-import { BlogPost } from "./BlogPost";
-import { LoginPage } from "./LoginPage";
-import { LogoutPage } from "./LogoutPage";
+import { HomePage } from "./pages/HomePage";
+import { BlogPage } from "./pages/BlogPage";
+import { ProfilePage } from "./pages/ProfilePage";
+import { BlogPost } from "./pages/BlogPost";
+import { LoginPage } from "./pages/LoginPage";
+import { LogoutPage } from "./pages/LogoutPage";
 import { AuthProvider, AuthRequired } from "./auth";
-import { BlogPostAdd } from "./BlogPostAdd";
+import { BlogPostAdd } from "./pages/BlogPostAdd";
 
 function App() {
   return (

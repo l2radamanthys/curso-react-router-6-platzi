@@ -1,6 +1,7 @@
 import React from "react";
-import { useAuth } from "./auth";
+import { useAuth } from "../../auth";
 import { Navigate } from "react-router-dom";
+import "./LoginPage.css";
 
 function LoginPage() {
   const auth = useAuth();
@@ -18,7 +19,7 @@ function LoginPage() {
   return (
     <>
       <h1>LogIn</h1>
-      <form onSubmit={login}>
+      <form className="LoginPage-form" onSubmit={login}>
         <label htmlFor="">Escribe tu nombre de usuario</label>
         <input
           type="text"

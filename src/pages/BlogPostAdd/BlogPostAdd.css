@@ -1,0 +1,71 @@
+.BlogPost-form {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Agrupador de cada campo */
+.BlogPost-form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Etiquetas */
+.BlogPost-form label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+/* Inputs y textarea */
+.BlogPost-form input[type="text"],
+.BlogPost-form textarea {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #111827;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.BlogPost-form textarea {
+  resize: vertical; /* el textarea se puede agrandar en vertical */
+  min-height: 120px; /* para que no sea tan chico */
+}
+
+.BlogPost-form input:focus,
+.BlogPost-form textarea:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.BlogPost-form input:disabled {
+  background-color: #d1d5db;
+}
+
+/* Botón */
+.BlogPost-form button {
+  align-self: flex-start;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.BlogPost-form button:hover {
+  background: #1e40af;
+}

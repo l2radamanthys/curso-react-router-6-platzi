@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { blogData } from "./blogData";
-import { useAuth } from "./auth";
+import { blogData } from "../../blogData";
+import { useAuth } from "../../auth";
 
 function BlogPost() {
   const navigate = useNavigate();
@@ -18,8 +18,16 @@ function BlogPost() {
     blogPost.author === auth.user?.username;
 
   const returnToBlog = () => {
-    // navigate(-1); // -1 go to previos page similar windows.location(-1)
     navigate("/blog");
+  };
+
+  const deletePost = () => {
+    // delete here
+    returnToBlog();
+  };
+
+  const editPost = () => {
+    navigate(`/blog/edit/${blogPost.slug}`);
   };
 
   return (
@@ -29,8 +37,8 @@ function BlogPost() {
       <p>Author: {blogPost.author}</p>
       <p>{blogPost.content}</p>
 
-      {canDelete && <button>Eliminar Post</button>}
-      {canEdit && <button>Modificar Post</button>}
+      {canDelete && <button onClick={deletePost}>Eliminar Post</button>}
+      {canEdit && <button onClick={editPost}>Modificar Post</button>}
     </>
   );
 }
