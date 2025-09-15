@@ -7,6 +7,7 @@ import { BlogPost } from "./BlogPost";
 import { LoginPage } from "./LoginPage";
 import { LogoutPage } from "./LogoutPage";
 import { AuthProvider, AuthRequired } from "./auth";
+import { BlogPostAdd } from "./BlogPostAdd";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/blog" element={<BlogPage />}>
+              <Route path="add" element={<BlogPostAdd />} />
+              <Route path="edit/:slug" element={<BlogPostAdd />} />
               <Route path=":slug" element={<BlogPost />} />
             </Route>
             <Route
