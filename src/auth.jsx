@@ -1,5 +1,4 @@
 import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
 
 // usuarios con roles especiales si el usuario no esta en esta lista,
 // tiene el rol "user" por defecto
@@ -8,7 +7,13 @@ const roleList = { juandc: "moderator", admin: "admin", camila: "moderator" };
 const accessRoles = {
   user: ["can-create-post"],
   moderator: ["can-create-post", "can-edit-any-post"],
-  admin: ["can-create-post", "can-edit-any-post", "can-delete-any-post"],
+  admin: [
+    "can-create-post",
+    "can-edit-any-post",
+    "can-delete-any-post",
+    "can-edit-any-profile",
+    "can-delete-any-profile",
+  ],
 };
 
 const AuthContext = React.createContext();
@@ -49,17 +54,4 @@ function useAuth() {
   return auth;
 }
 
-function AuthRequired(props) {
-  const auth = useAuth();
-  const location = useLocation();
-
-  React.useEffect(() => {
-    if (!auth.isAuthenticated) {
-      auth.setRedirect(location.pathname);
-      return <Navigate to="/login" />;
-    }
-  }, []);
-  return props.children;
-}
-
-export { AuthProvider, useAuth, AuthRequired };
+export { AuthProvider, useAuth };

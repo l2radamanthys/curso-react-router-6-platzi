@@ -1,7 +1,7 @@
 import React from "react";
 import "./BlogPostAdd.css";
 import { useAuth } from "../../auth";
-import { useBlogData } from "../../useBlogData";
+import { useBlogData } from "../../hooks/useBlogData";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 function BlogPostAdd() {

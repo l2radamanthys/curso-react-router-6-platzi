@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useBlogData } from "../../useBlogData";
+import { useBlogData } from "../../hooks/useBlogData";
 import { useAuth } from "../../auth";
 
 function BlogPost() {

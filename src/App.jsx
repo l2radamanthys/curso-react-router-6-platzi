@@ -6,10 +6,12 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { BlogPost } from "./pages/BlogPost";
 import { LoginPage } from "./pages/LoginPage";
 import { LogoutPage } from "./pages/LogoutPage";
-import { AuthProvider, AuthRequired } from "./auth";
+import { AuthProvider } from "./auth";
 import { BlogPostAdd } from "./pages/BlogPostAdd";
 import { UnauthorizedPage } from "./pages/UnauthorizedPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { AddProfilePage } from "./pages/AddProfilePage";
+import { AuthRequired } from "./components/AuthRequired";
 
 function App() {
   return (
@@ -17,7 +19,6 @@ function App() {
       <HashRouter>
         <AuthProvider>
           <Menu />
-
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/blog" element={<BlogPage />}>
@@ -47,7 +48,14 @@ function App() {
                 </AuthRequired>
               }
             />
+            <Route path="/register" element={<AddProfilePage />} />
+            <Route
+              path="/profile/edit/:username"
+              element={<AddProfilePage />}
+            />
+            <Route path="/profile/:username" element={<ProfilePage />} />
             <Route path="/login" element={<LoginPage />} />
+
             <Route
               path="/logout"
               element={

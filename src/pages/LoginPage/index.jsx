@@ -7,8 +7,6 @@ function LoginPage() {
   const auth = useAuth();
   const [username, setUsername] = React.useState("");
 
-  console.log("redirect", auth.redirect);
-
   const login = (e) => {
     e.preventDefault();
     auth.login(username);
