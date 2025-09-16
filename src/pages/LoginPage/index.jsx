@@ -7,12 +7,19 @@ function LoginPage() {
   const auth = useAuth();
   const [username, setUsername] = React.useState("");
 
+  console.log("redirect", auth.redirect);
+
   const login = (e) => {
     e.preventDefault();
     auth.login(username);
   };
 
   if (auth.isAuthenticated) {
+    if (auth.redirect) {
+      const redirect = auth.redirect;
+      auth.setRedirect(null);
+      return <Navigate to={redirect} />;
+    }
     return <Navigate to="/profile" />;
   }
 

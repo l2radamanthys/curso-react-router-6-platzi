@@ -2,7 +2,7 @@ import React from "react";
 import "./BlogPostAdd.css";
 import { useAuth } from "../../auth";
 import { useBlogData } from "../../useBlogData";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 function BlogPostAdd() {
   const [formData, setFormData] = React.useState({
@@ -11,12 +11,29 @@ function BlogPostAdd() {
     content: "",
     author: "",
   });
+
   const auth = useAuth();
   const { blogData, addPost } = useBlogData();
   const navigate = useNavigate();
+  const { slug } = useParams();
+  const location = useLocation();
 
   React.useEffect(() => {
-    setFormData({ ...formData, author: auth.user?.username });
+    if (slug) {
+      const blogPost = blogData.find((post) => post.slug === slug);
+      if (blogPost) {
+        const canEdit =
+          auth.hasPermission("can-edit-any-post") ||
+          blogPost.author === auth.user?.username;
+        if (!canEdit) {
+          auth.setRedirect(location.pathname);
+          navigate("/unauthorized");
+        }
+        setFormData(blogPost);
+      }
+    } else {
+      setFormData({ ...formData, author: auth.user?.username });
+    }
   }, []);
 
   const handleChange = (event) => {
@@ -35,8 +52,6 @@ function BlogPostAdd() {
   const savePost = (event) => {
     event.preventDefault();
     addPost(formData);
-    console.log(formData);
-    console.log(blogData);
     navigate(`/blog/${formData.slug}`);
   };
 

@@ -16,13 +16,17 @@ function useBlogData() {
   const deletePost = (slug) => {
     setBlogData(blogData.filter((post) => post.slug !== slug));
   };
-  // const updatePost = (postData) => {};
+
+  const updatePost = (slug, postData) => {
+    deletePost(slug);
+    addPost(postData);
+  };
 
   return {
     blogData,
     addPost,
     deletePost,
-    // updatePost,
+    updatePost,
   };
 }
 

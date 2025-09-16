@@ -8,6 +8,8 @@ import { LoginPage } from "./pages/LoginPage";
 import { LogoutPage } from "./pages/LogoutPage";
 import { AuthProvider, AuthRequired } from "./auth";
 import { BlogPostAdd } from "./pages/BlogPostAdd";
+import { UnauthorizedPage } from "./pages/UnauthorizedPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -27,7 +29,14 @@ function App() {
                   </AuthRequired>
                 }
               />
-              <Route path="edit/:slug" element={<BlogPostAdd />} />
+              <Route
+                path="edit/:slug"
+                element={
+                  <AuthRequired>
+                    <BlogPostAdd />
+                  </AuthRequired>
+                }
+              />
               <Route path=":slug" element={<BlogPost />} />
             </Route>
             <Route
@@ -47,7 +56,8 @@ function App() {
                 </AuthRequired>
               }
             />
-            <Route path="*" element={<p>Not Found!</p>} />
+            <Route path="unauthorized" element={<UnauthorizedPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </AuthProvider>
       </HashRouter>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 // usuarios con roles especiales si el usuario no esta en esta lista,
 // tiene el rol "user" por defecto
@@ -15,6 +15,7 @@ const AuthContext = React.createContext();
 
 function AuthProvider({ children }) {
   const [user, setUser] = React.useState(null);
+  const [redirect, setRedirect] = React.useState(null);
   const isAuthenticated = !!user;
 
   const login = (username) => {
@@ -37,6 +38,8 @@ function AuthProvider({ children }) {
     hasPermission,
     login,
     logout,
+    redirect,
+    setRedirect,
   };
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 }
@@ -48,10 +51,14 @@ function useAuth() {
 
 function AuthRequired(props) {
   const auth = useAuth();
+  const location = useLocation();
 
-  if (!auth.isAuthenticated) {
-    return <Navigate to="/login" />;
-  }
+  React.useEffect(() => {
+    if (!auth.isAuthenticated) {
+      auth.setRedirect(location.pathname);
+      return <Navigate to="/login" />;
+    }
+  }, []);
   return props.children;
 }
 
