@@ -1,4 +1,5 @@
 import React from "react";
+import { useUserProfile } from "./hooks/useUserProfile";
 
 // usuarios con roles especiales si el usuario no esta en esta lista,
 // tiene el rol "user" por defecto
@@ -21,11 +22,17 @@ const AuthContext = React.createContext();
 function AuthProvider({ children }) {
   const [user, setUser] = React.useState(null);
   const [redirect, setRedirect] = React.useState(null);
+  const userProfile = useUserProfile();
+
   const isAuthenticated = !!user;
 
   const login = (username) => {
-    const role = roleList[username] || "user";
-    setUser({ username, role });
+    const profile = userProfile.getProfile(username);
+    if (profile) {
+      setUser(profile);
+      return true;
+    }
+    return false;
   };
 
   const logout = () => {

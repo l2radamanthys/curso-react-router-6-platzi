@@ -2,10 +2,12 @@ import React from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
 function useBlogData() {
-  const { item: blogData, saveItem: setBlogData } = useLocalStorage(
-    "BLOG_DATA_V1",
-    blogInitialData
-  );
+  const blogDataStorageKey = "BLOG_DATA_V1";
+  const {
+    item: blogData,
+    saveItem: setBlogData,
+    sincronizeItem: sincronizeBlog,
+  } = useLocalStorage(blogDataStorageKey, blogInitialData);
 
   const addPost = (postData) => {
     setBlogData([...blogData, postData]);
@@ -25,6 +27,8 @@ function useBlogData() {
     addPost,
     deletePost,
     updatePost,
+    blogDataStorageKey,
+    sincronizeBlog,
   };
 }
 

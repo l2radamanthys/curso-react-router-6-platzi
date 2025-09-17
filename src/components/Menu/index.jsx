@@ -55,6 +55,12 @@ routes.push({
   publicOnly: true,
 });
 routes.push({
+  to: "/register",
+  text: "Registrate",
+  private: false,
+  publicOnly: true,
+});
+routes.push({
   to: "/logout",
   text: "LogOut",
   private: true,

@@ -9,9 +9,12 @@ function AuthRequired(props) {
   React.useEffect(() => {
     if (!auth.isAuthenticated) {
       auth.setRedirect(location.pathname);
-      return <Navigate to="/login" />;
     }
   }, []);
+
+  if (!auth.isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
   return props.children;
 }
 

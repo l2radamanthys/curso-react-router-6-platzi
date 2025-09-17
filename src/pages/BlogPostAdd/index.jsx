@@ -1,10 +1,9 @@
 import React from "react";
 import "./BlogPostAdd.css";
 import { useAuth } from "../../auth";
-import { useBlogData } from "../../hooks/useBlogData";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 
-function BlogPostAdd() {
+function BlogPostAdd({ blogData, addPost }) {
   const [formData, setFormData] = React.useState({
     title: "",
     slug: "",
@@ -13,7 +12,6 @@ function BlogPostAdd() {
   });
 
   const auth = useAuth();
-  const { blogData, addPost } = useBlogData();
   const navigate = useNavigate();
   const { slug } = useParams();
   const location = useLocation();
@@ -21,6 +19,7 @@ function BlogPostAdd() {
   React.useEffect(() => {
     if (slug) {
       const blogPost = blogData.find((post) => post.slug === slug);
+      console.log(slug, blogPost, blogData);
       if (blogPost) {
         const canEdit =
           auth.hasPermission("can-edit-any-post") ||

@@ -1,10 +1,8 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useBlogData } from "../../hooks/useBlogData";
 import { useAuth } from "../../auth";
 
-function BlogPost() {
-  const { blogData, deletePost } = useBlogData();
+function BlogPost({ blogData, deletePost }) {
   const navigate = useNavigate();
   const { slug } = useParams();
   const auth = useAuth();

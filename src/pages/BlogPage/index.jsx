@@ -1,11 +1,9 @@
 import React from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { useBlogData } from "../../hooks/useBlogData";
 import { useAuth } from "../../auth";
 import "./BlogPage.css";
 
-function BlogPage() {
-  const { blogData } = useBlogData();
+function BlogPage({ blogData }) {
   const auth = useAuth();
   const navigate = useNavigate();
 

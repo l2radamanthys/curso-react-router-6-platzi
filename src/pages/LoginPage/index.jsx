@@ -6,10 +6,12 @@ import "./LoginPage.css";
 function LoginPage() {
   const auth = useAuth();
   const [username, setUsername] = React.useState("");
+  const [loginError, setLoginError] = React.useState(false);
 
   const login = (e) => {
     e.preventDefault();
-    auth.login(username);
+    const result = auth.login(username);
+    setLoginError(!result);
   };
 
   if (auth.isAuthenticated) {
@@ -33,6 +35,10 @@ function LoginPage() {
         />
         <button type="submit">Entrar</button>
       </form>
+
+      {loginError && (
+        <p className="LoginPage-error">Error usuario no valido.</p>
+      )}
     </>
   );
 }

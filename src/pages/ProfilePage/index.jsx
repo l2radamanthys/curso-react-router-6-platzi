@@ -10,16 +10,25 @@ function ProfilePage() {
   const profileUsername = username || auth.user?.username;
   const profile = userProfile.getProfile(profileUsername);
 
-  return (
-    <>
-      <h1>Profile</h1>
-      <p>
-        Nombre: {profile.first_name} {profile.last_name}
-      </p>
-      <p>Edad: {profile.age} años</p>
-      <p>Pais: {profile.country}</p>
-    </>
-  );
+  if (profile) {
+    return (
+      <>
+        <h1>Profile</h1>
+        <p>
+          Nombre: {profile.first_name} {profile.last_name}
+        </p>
+        <p>Edad: {profile.age} años</p>
+        <p>Pais: {profile.country}</p>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <h1>Profile</h1>
+        <p>Perfil no encontrado.</p>
+      </>
+    );
+  }
 }
 
 export { ProfilePage };
