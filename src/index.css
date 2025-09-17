@@ -1,3 +1,10 @@
-.w-full {
-  width: 100%;
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #8f4c38;
+  --color-secondary: #77574e;
+  --color-surface: #fff9ee;
+  --color-error: #ba1a1a;
+  --font-primary: "Playfair Display", serif;
+  --font-display: "Patrick Hand", sans-serif;
 }
