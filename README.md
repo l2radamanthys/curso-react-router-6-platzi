@@ -1,11 +1,18 @@
 # Practicas Curso React Router 6 Platzi
 
-![](./screenshot-1.png)
+# Requiere
 
-![](./screenshot-1.png)
+- Node v22.19.0
+- React.js
+- react-route-dom 6.30.0
+- tailwindcss
 
-ejecutar
+## Ejecutar
 
 ```
 npm run dev
 ```
+
+![](./screenshot-1.png)
+
+![](./screenshot-2.png)
