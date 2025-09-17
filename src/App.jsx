@@ -6,7 +6,7 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { BlogPost } from "./pages/BlogPost";
 import { LoginPage } from "./pages/LoginPage";
 import { LogoutPage } from "./pages/LogoutPage";
-import { AuthProvider, useAuth } from "./auth";
+import { AuthProvider } from "./auth";
 import { BlogPostAdd } from "./pages/BlogPostAdd";
 import { UnauthorizedPage } from "./pages/UnauthorizedPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
@@ -14,6 +14,7 @@ import { AddProfilePage } from "./pages/AddProfilePage";
 import { AuthRequired } from "./components/AuthRequired";
 import { StorageListener } from "./StorageListener";
 import { useBlogData } from "./hooks/useBlogData";
+import { Header } from "./components/Header";
 
 function App() {
   const {
@@ -28,7 +29,9 @@ function App() {
     <>
       <HashRouter>
         <AuthProvider>
+          <Header />
           <Menu />
+
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/blog" element={<BlogPage blogData={blogData} />}>

@@ -35,13 +35,43 @@ function BlogPost({ blogData, deletePost }) {
 
   return (
     <>
-      <h2>{blogPost.title}</h2>
-      <button onClick={returnToBlog}>Volver al Blog</button>
-      <p>Author: {blogPost.author}</p>
-      <p>{blogPost.content}</p>
+      <div className="text-right px-4 py-4">
+        <button
+          onClick={returnToBlog}
+          className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition"
+        >
+          Volver al Blog
+        </button>
+      </div>
+      <div className="max-w-xl mx-auto p-6 rounded-2xl space-y-4">
+        <h2 className="text-2xl font-bold text-gray-800">{blogPost.title}</h2>
 
-      {canDelete && <button onClick={deleteBlogPost}>Eliminar Post</button>}
-      {canEdit && <button onClick={editPost}>Modificar Post</button>}
+        <p className="text-sm text-gray-600">
+          Autor: <span className="font-medium">{blogPost.author}</span>
+        </p>
+
+        <p className="text-gray-700 leading-relaxed">{blogPost.content}</p>
+
+        <div className="flex flex-wrap gap-3 pt-4">
+          {canDelete && (
+            <button
+              onClick={deleteBlogPost}
+              className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
+            >
+              Eliminar Post
+            </button>
+          )}
+
+          {canEdit && (
+            <button
+              onClick={editPost}
+              className="px-4 py-2 rounded-lg bg-green-500 text-white hover:bg-green-600 transition"
+            >
+              Modificar Post
+            </button>
+          )}
+        </div>
+      </div>
     </>
   );
 }

@@ -13,12 +13,24 @@ function ProfilePage() {
   if (profile) {
     return (
       <>
-        <h1>Profile</h1>
-        <p>
-          Nombre: {profile.first_name} {profile.last_name}
-        </p>
-        <p>Edad: {profile.age} años</p>
-        <p>Pais: {profile.country}</p>
+        <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg space-y-4">
+          <h1 className="text-2xl font-bold text-blue-600 text-center">
+            Perfil
+          </h1>
+
+          <div className="space-y-2 text-gray-700">
+            <p>
+              <span className="font-semibold">Nombre:</span>{" "}
+              {profile.first_name} {profile.last_name}
+            </p>
+            <p>
+              <span className="font-semibold">Edad:</span> {profile.age} años
+            </p>
+            <p>
+              <span className="font-semibold">País:</span> {profile.country}
+            </p>
+          </div>
+        </div>
       </>
     );
   } else {

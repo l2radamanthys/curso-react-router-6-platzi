@@ -13,26 +13,38 @@ function BlogPage({ blogData }) {
 
   return (
     <>
-      <h1>Blog</h1>
+      {/* <h1>Blog</h1> */}
 
       <Outlet />
 
-      <ul className="BlogPage-post-list">
+      <div className="text-center mt-4">
         {blogData.map((post) => (
           <BlogLink key={post.slug} post={post} />
         ))}
-      </ul>
+      </div>
 
-      {auth.isAuthenticated && <button onClick={addNewPost}>Nuevo Post</button>}
+      <div className="text-center mt-4">
+        {auth.isAuthenticated && (
+          <button
+            className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition"
+            onClick={addNewPost}
+          >
+            Nuevo Post
+          </button>
+        )}
+      </div>
     </>
   );
 }
 
 function BlogLink({ post }) {
   return (
-    <li>
-      <Link to={`/blog/${post.slug}`}>{post.title}</Link>
-    </li>
+    <Link
+      className="px-3 py-2 rounded-md text-sm transition-colors text-blue-950"
+      to={`/blog/${post.slug}`}
+    >
+      {post.title}
+    </Link>
   );
 }
 
